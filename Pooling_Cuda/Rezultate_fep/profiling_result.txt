@@ -1,0 +1,168 @@
+Singularity> nvprof --cpu-profiling on ./Pooling ./input/test10.bmp ./output/test10-cuda.bmp > profiling_result.txt > profiling_result.txt
+==3388546== NVPROF is profiling process 3388546, command: ./Pooling ./input/test10.bmp ./output/test10-cuda.bmp
+==3388546== Profiling application: ./Pooling ./input/test10.bmp ./output/test10-cuda.bmp
+==3388546== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  101.95ms         1  101.95ms  101.95ms  101.95ms  pooling_cuda(RGB*, RGB*, char, int, int, int)
+      API calls:   61.39%  328.49ms         3  109.50ms  23.597ms  268.31ms  cudaMallocManaged
+                   19.06%  101.97ms         1  101.97ms  101.97ms  101.97ms  cudaDeviceSynchronize
+                   11.98%  64.088ms         2  32.044ms  25.377ms  38.712ms  cudaFree
+                    6.50%  34.786ms         1  34.786ms  34.786ms  34.786ms  cudaLaunch
+                    0.73%  3.8951ms         3  1.2984ms  1.1575ms  1.5783ms  cuDeviceTotalMem
+                    0.30%  1.6058ms       282  5.6940us     344ns  225.23us  cuDeviceGetAttribute
+                    0.03%  159.39us         3  53.129us  49.634us  59.702us  cuDeviceGetName
+                    0.01%  56.039us         2  28.019us  13.254us  42.785us  cudaEventRecord
+                    0.00%  21.150us         2  10.575us  2.1140us  19.036us  cudaEventCreate
+                    0.00%  9.5100us         1  9.5100us  9.5100us  9.5100us  cudaEventSynchronize
+                    0.00%  6.5590us         6  1.0930us     474ns  2.2180us  cuDeviceGet
+                    0.00%  5.9660us         1  5.9660us  5.9660us  5.9660us  cudaEventElapsedTime
+                    0.00%  5.6650us         1  5.6650us  5.6650us  5.6650us  cudaConfigureCall
+                    0.00%  5.4700us         3  1.8230us     471ns  3.7220us  cuDeviceGetCount
+                    0.00%  3.1820us         6     530ns     184ns  1.2140us  cudaSetupArgument
+
+==3388546== Unified Memory profiling result:
+Device "Tesla K40m (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+     101  1.9688MB  232.00KB  2.0000MB  198.8516MB  34.02781ms  Host To Device
+    2400  169.69KB  4.0000KB  0.9961MB  397.7031MB  63.73501ms  Device To Host
+Total CPU Page faults: 1200
+
+======== CPU profiling result (bottom up):
+Time(%)      Time  Name
+ 69.37%   33.058s  ???
+ 68.20%  32.5013s  | start_thread
+ 68.20%  32.5013s  | | clone
+  0.40%  192.32ms  | cudart::globalState::loadDriverInternal(void)
+  0.40%  192.32ms  | | cudart::__loadDriverInternalUtil(void)
+  0.40%  192.32ms  | |   __pthread_once_slow
+  0.40%  192.32ms  | |     cudart::cuosOnce(int*, void (*) (void))
+  0.40%  192.32ms  | |       cudart::globalState::initializeDriver(void)
+  0.40%  192.32ms  | |         cudaMallocManaged
+  0.40%  192.32ms  | |           cudaError cudaMallocManaged<RGB>(RGB**, unsigned long, unsigned int)
+  0.40%  192.32ms  | |             main
+  0.40%  192.32ms  | |               ???
+  0.38%  182.19ms  | cudart::contextStateManager::initPrimaryContext(cudart::device*)
+  0.38%  182.19ms  | | cudart::contextStateManager::initDriverContext(void)
+  0.38%  182.19ms  | |   cudart::contextStateManager::getRuntimeContextState(cudart::contextState**, bool)
+  0.38%  182.19ms  | |     cudart::doLazyInitContextState(void)
+  0.38%  182.19ms  | |       cudart::cudaApiMallocManaged(void**, unsigned long, unsigned int)
+  0.38%  182.19ms  | |         cudaMallocManaged
+  0.38%  182.19ms  | |           cudaError cudaMallocManaged<RGB>(RGB**, unsigned long, unsigned int)
+  0.38%  182.19ms  | |             main
+  0.38%  182.19ms  | |               ???
+  0.21%  101.22ms  | cudart::cudaApiDeviceSynchronize(void)
+  0.21%  101.22ms  | | cudaDeviceSynchronize
+  0.21%  101.22ms  | |   main
+  0.21%  101.22ms  | |     ???
+  0.08%  40.487ms  | cudart::driverHelper::mallocManagedPtr(unsigned long, unsigned int, void**)
+  0.08%  40.487ms  | | cudart::cudaApiMallocManaged(void**, unsigned long, unsigned int)
+  0.08%  40.487ms  | |   cudaMallocManaged
+  0.08%  40.487ms  | |     cudaError cudaMallocManaged<RGB>(RGB**, unsigned long, unsigned int)
+  0.06%  30.366ms  | |       read_photo(params*, bmp_photo*)
+  0.06%  30.366ms  | |       | main
+  0.06%  30.366ms  | |       |   ???
+  0.02%  10.122ms  | |       main
+  0.02%  10.122ms  | |         ???
+  0.04%  20.244ms  | cudart::cudaApiFree(void*)
+  0.04%  20.244ms  | | cudaFree
+  0.04%  20.244ms  | |   main
+  0.04%  20.244ms  | |     ???
+  0.02%  10.122ms  | cudart::deviceMgr::enumerateDevices(void)
+  0.02%  10.122ms  | | cudart::globalState::initializeDriverInternal(void)
+  0.02%  10.122ms  | |   cudart::globalState::initializeDriver(void)
+  0.02%  10.122ms  | |     cudaMallocManaged
+  0.02%  10.122ms  | |       cudaError cudaMallocManaged<RGB>(RGB**, unsigned long, unsigned int)
+  0.02%  10.122ms  | |         main
+  0.02%  10.122ms  | |           ???
+  0.02%  10.122ms  | cudart::cudaApiLaunchCommon(void const *, bool)
+  0.02%  10.122ms  |   cudaLaunch
+  0.02%  10.122ms  |     cudaError cudaLaunch<char>(char*)
+  0.02%  10.122ms  |       __device_stub__Z12pooling_cudaP3RGBS0_ciii(RGB*, RGB*, char, int, int, int)
+  0.02%  10.122ms  |         pooling_cuda(RGB*, RGB*, char, int, int, int)
+  0.02%  10.122ms  |           main
+  0.02%  10.122ms  |             ???
+ 10.54%  5.02044s  fwrite
+ 10.54%  5.02044s  | write_photo(params*, bmp_photo*)
+ 10.54%  5.02044s  |   main
+ 10.54%  5.02044s  |     ???
+ 10.39%  4.94959s  fread
+ 10.39%  4.94959s  | read_bitmap(bmp_photo*, _IO_FILE*)
+ 10.39%  4.94959s  |   read_photo(params*, bmp_photo*)
+ 10.39%  4.94959s  |     main
+ 10.39%  4.94959s  |       ???
+  2.42%  1.15389s  _IO_file_xsputn@@GLIBC_2.2.5
+  2.42%  1.15389s  | fwrite
+  2.42%  1.15389s  |   write_photo(params*, bmp_photo*)
+  2.42%  1.15389s  |     main
+  2.42%  1.15389s  |       ???
+  1.72%  819.87ms  __GI__IO_file_xsgetn
+  1.72%  819.87ms  | fread
+  1.72%  819.87ms  |   read_bitmap(bmp_photo*, _IO_FILE*)
+  1.72%  819.87ms  |     read_photo(params*, bmp_photo*)
+  1.72%  819.87ms  |       main
+  1.72%  819.87ms  |         ???
+  1.57%  749.02ms  __GI_memcpy
+  1.57%  749.02ms  | __GI__IO_file_xsgetn
+  1.57%  749.02ms  |   fread
+  1.57%  749.02ms  |     read_bitmap(bmp_photo*, _IO_FILE*)
+  1.57%  749.02ms  |       read_photo(params*, bmp_photo*)
+  1.57%  749.02ms  |         main
+  1.57%  749.02ms  |           ???
+  1.04%  495.97ms  __mempcpy_sse2
+  1.04%  495.97ms  | _IO_file_xsputn@@GLIBC_2.2.5
+  1.04%  495.97ms  |   fwrite
+  1.04%  495.97ms  |     write_photo(params*, bmp_photo*)
+  1.04%  495.97ms  |       main
+  1.04%  495.97ms  |         ???
+  0.91%  435.24ms  read_bitmap(bmp_photo*, _IO_FILE*)
+  0.91%  435.24ms  | read_photo(params*, bmp_photo*)
+  0.91%  435.24ms  |   main
+  0.91%  435.24ms  |     ???
+  0.70%  334.02ms  _IO_sgetn
+  0.70%  334.02ms  | fread
+  0.70%  334.02ms  |   read_bitmap(bmp_photo*, _IO_FILE*)
+  0.70%  334.02ms  |     read_photo(params*, bmp_photo*)
+  0.70%  334.02ms  |       main
+  0.70%  334.02ms  |         ???
+  0.62%  293.53ms  write_photo(params*, bmp_photo*)
+  0.62%  293.53ms  | main
+  0.62%  293.53ms  |   ???
+  0.40%  192.32ms  __write
+  0.40%  192.32ms  | _IO_file_write@@GLIBC_2.2.5
+  0.40%  192.32ms  |   _IO_do_write@@GLIBC_2.2.5
+  0.40%  192.32ms  |     _IO_file_xsputn@@GLIBC_2.2.5
+  0.40%  192.32ms  |       fwrite
+  0.40%  192.32ms  |         write_photo(params*, bmp_photo*)
+  0.40%  192.32ms  |           main
+  0.40%  192.32ms  |             ???
+  0.21%  101.22ms  read
+  0.21%  101.22ms  | _IO_file_underflow@@GLIBC_2.2.5
+  0.21%  101.22ms  |   __GI__IO_file_xsgetn
+  0.21%  101.22ms  |     fread
+  0.21%  101.22ms  |       read_bitmap(bmp_photo*, _IO_FILE*)
+  0.21%  101.22ms  |         read_photo(params*, bmp_photo*)
+  0.21%  101.22ms  |           main
+  0.21%  101.22ms  |             ???
+  0.06%  30.366ms  ???
+  0.04%  20.244ms  | write_photo(params*, bmp_photo*)
+  0.04%  20.244ms  | | main
+  0.04%  20.244ms  | |   ???
+  0.02%  10.122ms  | read_bitmap(bmp_photo*, _IO_FILE*)
+  0.02%  10.122ms  |   read_photo(params*, bmp_photo*)
+  0.02%  10.122ms  |     main
+  0.02%  10.122ms  |       ???
+  0.02%  10.122ms  __open64
+  0.02%  10.122ms  | _IO_file_fopen@@GLIBC_2.2.5
+  0.02%  10.122ms  |   __fopen_internal
+  0.02%  10.122ms  |     write_photo(params*, bmp_photo*)
+  0.02%  10.122ms  |       main
+  0.02%  10.122ms  |         ???
+  0.02%  10.122ms  close
+  0.02%  10.122ms    _IO_file_close_it@@GLIBC_2.2.5
+  0.02%  10.122ms      _IO_fclose@@GLIBC_2.2.5
+  0.02%  10.122ms        write_photo(params*, bmp_photo*)
+  0.02%  10.122ms          main
+  0.02%  10.122ms            ???
+
+======== Data collected at 100Hz frequency
+

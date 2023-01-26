@@ -1,0 +1,33 @@
+-----------------Serial-------------------
+
+Algorithm took 21.309525 seconds to execute
+
+-----------------Paralel------------------
+
+2 threads: 
+Algorithm took 11.950207 seconds to execute
+
+4 threads: 
+Algorithm took 7.539401 seconds to execute
+
+8 threads: 
+Algorithm took 3.540929 seconds to execute
+
+16 threads: 
+Algorithm took 2.086916 seconds to execute
+
+20 threads: 
+Algorithm took 1.873198 seconds to execute
+
+28 threads: 
+Algorithm took 1.554419 seconds to execute
+
+32 threads: 
+Algorithm took 1.435507 seconds to execute
+
+36 threads: 
+Algorithm took 1.308935 seconds to execute
+
+40 threads: 
+Algorithm took 1.246895 seconds to execute
+

@@ -1,0 +1,10 @@
+Test1: Algorithm took 0.987872 milliseconds to execute
+Test2: Algorithm took 3.081536 milliseconds to execute
+Test3: Algorithm took 4.286528 milliseconds to execute
+Test4: Algorithm took 18.145184 milliseconds to execute
+Test5: Algorithm took 29.994112 milliseconds to execute
+Test6: Algorithm took 36.961697 milliseconds to execute
+Test7: Algorithm took 35.122879 milliseconds to execute
+Test8: Algorithm took 43.364674 milliseconds to execute
+Test9: Algorithm took 47.000320 milliseconds to execute
+Test10:Algorithm took 136.602631 milliseconds to execute
